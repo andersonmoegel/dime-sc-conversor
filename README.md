@@ -1,6 +1,11 @@
 # Conversor DIME/GIA-SC → DIME Detalhada
 
+[![Pylint](https://github.com/andersonmoegel/dime-sc-conversor/actions/workflows/pylint.yml/badge.svg)](https://github.com/andersonmoegel/dime-sc-conversor/actions/workflows/pylint.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
 Converte o arquivo-texto de layout fixo da DIME/GIA-SC (o arquivo que o contabilista transmite à SEF/SC) em um relatório no formato **DIME Detalhada** — o mesmo extrato exibido pelo sistema S@T em `sat.sef.sc.gov.br`. Layout dos registros implementado a partir do **Manual Consolidado da DIME (v31, 22/03/2024)**, item 5 — *Layout dos Registros* — e validado campo a campo contra uma declaração real.
+
+![Exemplo de página gerada](screenshot.png)
 
 ## Arquivos
 
@@ -23,7 +28,7 @@ Cada declaração do arquivo (delimitada pelos registros `21` ... `98`) vira um 
 ## Instalação
 
 ```bash
-pip install reportlab
+pip install -r requirements.txt
 ```
 
 (`tkinter`, usado na janela do programa desktop, já vem incluído no instalador oficial do Python para Windows.)
@@ -74,3 +79,7 @@ Validação feita comparando **todos os valores monetários** de um PDF gerado p
 - Quadros pouco usuais (41, 42, 47, 48, 51, 80–85) são lidos e somados corretamente, mas exibidos com um rótulo genérico ("Item NNN") em vez da descrição oficial completa — esses quadros raramente aparecem em declarações normais.
 - Campos como "Data de Transmissão" e "Número da Declaração" não existem no arquivo-texto (são atribuídos pela SEF só depois do envio), por isso não aparecem no relatório.
 - Esta ferramenta gera um **relatório de conferência local**, a partir do arquivo que seria transmitido — ela não substitui nem realiza a transmissão da DIME à SEF/SC.
+
+## Licença
+
+Distribuído sob a licença [MIT](LICENSE).
